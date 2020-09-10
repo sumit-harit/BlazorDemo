@@ -17,8 +17,11 @@ jobs:
    
         # Generate the website
         - name: Publish
-          run: dotnet publish BlazorDemo.csproj --configuration Release
-
+          run: |
+            cp wwwroot/index.html wwwroot/404.html
+            dotnet publish BlazorDemo.csproj --configuration Release
+            
+      
         # Publish the website
         - name: GitHub Pages action
           if: ${{ github.ref == 'refs/heads/master' }} # Publish only when the push is on master
